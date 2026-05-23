@@ -5,7 +5,8 @@ from database.engine import engine
 from database.models import Base
 from fastapi import FastAPI
 import uvicorn
-from telegram.ext import ApplicationBuilder
+from telegram.ext import ApplicationBuilder, CommandHandler
+from bot.handlers.start import start_handler
 
 # Setup log base
 logging.basicConfig(level=logging.INFO)
@@ -30,6 +31,9 @@ async def start_bot():
         return
 
     application = ApplicationBuilder().token(config.bot_token).build()
+
+    # Registrazione handler
+    application.add_handler(CommandHandler("start", start_handler))
 
     logger.info("Avvio bot in modalità polling...")
     await application.initialize()

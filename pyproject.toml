@@ -18,6 +18,9 @@ dependencies = [
     "pillow"
 ]
 
+[tool.setuptools]
+packages = ["bot", "core", "dashboard", "database", "i18n", "services", "utils", "scripts"]
+
 [project.optional-dependencies]
 dev = [
     "pytest",
